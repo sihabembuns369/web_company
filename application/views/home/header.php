@@ -24,7 +24,8 @@
   <link href="<?= base_url(); ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
+  <link id="css_theme" href='<?= base_url(); ?>assets/css/style.css' rel="stylesheet">
+  <!-- <link id="linkCss" href="css/style.css" rel="stylesheet"> -->
 
   <!-- =======================================================
   
