@@ -566,8 +566,8 @@ endif;
       $('#summernote').summernote({
         height: "300px",
         callbacks: {
-          onImageUpload: function(image) {
-            uploadImage(image[0]);
+          onImageUpload: function(files) {
+            uploadImage(files[0]);
           },
           onMediaDelete: function(target) {
             deleteImage(target[0].src);
@@ -575,9 +575,9 @@ endif;
         }
       });
       // untuk melakukan upload dan menampilkan kembali 
-      function uploadImage(image) {
+      function uploadImage(file) {
         var data = new FormData();
-        data.append("image", image);
+        data.append("file", file);
         $.ajax({
           url: "<?php echo site_url('index.php/artikel/tambah') ?>",
           cache: false,
@@ -586,8 +586,8 @@ endif;
           data: data,
           type: "POST",
           success: function(url) {
-            console.log(url);
-            $('#summernote').summernote("insertImage", url);
+            console.log
+            $(this).summernote("insertImage", url);
           },
           error: function(data) {
             console.log(data);

@@ -11,20 +11,36 @@ class Artikel extends CI_Controller {
 			$judul = $this->input->post('judul');
 			$isi = $this->input->post('isi_artikel');
 			$tanggal = $this->input->post('tanggal');
-			$gambar = $this->input->post('src');
-			//var_dump($gambar);
-
-		// 	$e = $_FILES['src']['name'];
-        // $x = explode(".", $e);
-        // $ekstensi = strtolower(end($x));
-        // $foto = date('YmdHis') . "." . $ekstensi;
-        // $location = "img/artikel/" . $foto;
-
-        // $valid_extensions = array("jpg", "jpeg", "png");
-		// move_uploaded_file($_FILES['image']['tmp_name'], $location) && 
+			
 		$this->Martikel->artikel($judul,$isi,$tanggal);
 		
 		redirect('index.php/admin');
+		}
+
+		function upload_image(){
+			if(isset($_FILES["image"]["name"])){
+				$config['upload_path'] = './img/gambar_artikel/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$this->upload->initialize($config);
+				if(!$this->upload->do_upload('file')){
+					$this->upload->display_errors();
+					return FALSE;
+				}else{
+					$data = $this->upload->data();
+					//Compress Image
+					$config['image_library']='gd2';
+					$config['source_image']='./img/gambar_artikel/'.$data['file_name'];
+					$config['create_thumb']= FALSE;
+					$config['maintain_ratio']= TRUE;
+					$config['quality']= '60%';
+					$config['width']= 800;
+					$config['height']= 800;
+					$config['new_image']= './image/gambar_artikel/'.$data['file_name'];
+					$this->load->library('image_lib', $config);
+					$this->image_lib->resize();
+					echo base_url().'/image/gambar_artikel/'.$data['file_name'];
+				}
+			}
 		}
 
 }
