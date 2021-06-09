@@ -426,7 +426,7 @@ endif;
                     </button>
                   </div>
 
-                  <?= form_open('index.php/artikel/tambah');?>
+                  <?= form_open_multipart('index.php/artikel/tambah');?>
                   <div class="modal-body">
                       <div class="form-group">
                         <label for="exampleFormControlInput1 ">Judul</label>
@@ -437,11 +437,11 @@ endif;
                           <b id="detik"></b>
                         
                         </div>
-                        <input type="text" name="judul" class="form col-md-12 " id="judul" placeholder="Masukan judul anda di sini">
+                        <input type="text" name="judul" class="form col-md-9 " id="judul" placeholder="Masukan judul anda di sini">
                       </div>
                       <div class="form-group summernote">
                         <label for="exampleFormControlTextarea1">Artikel</label>
-                        <textarea class="form" name="isi_artikel" id="summernote" name="contents" rows="3"></textarea>
+                        <textarea class="form"  id="summernote" name="contents" rows="3"></textarea>
                       </div>
                   </div>
                   <div class="modal-footer">
@@ -463,7 +463,7 @@ endif;
                   <th scope="col">judul</th>
                   <th scope="col">tanggal</th>
                   <th scope="col">isi</th>
-                  <th scope="col"></th>
+                  <th scope="col">aksi</th>
 
 
                 </tr>
@@ -477,10 +477,10 @@ endif;
 
                 <tr>
                   <td><?= $no; ?></td>
-                  <td><?= $atk->gambar; ?></td>
-                  <td><?= $atk->judul; ?></td>
-                  <td><?= $atk->tanggal; ?></td>
-                  <td><?= $atk->isi; ?></td>
+                  <td width="5%" ><img width="100%"  src="<?=base_url();?>img/gambar/<?=$atk->gambar;?>"></td>
+                  <td ><?= $atk->judul; ?></td>
+                  <td ><?= $atk->tanggal; ?></td>
+                  <td ><?= $atk->isi; ?></td>
 
                   <td><i class="fas fa-trash-alt text-danger"></i></td>
                   <td><i class="fas fa-edit text-success" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false"></i></td>
@@ -562,54 +562,45 @@ endif;
   </script>
   <script type="text/javascript">
     // menginisialisasi summernote dengan element id="summernote"
-    $(document).ready(function() {
-      $('#summernote').summernote({
-        height: "300px",
-        callbacks: {
-          onImageUpload: function(files) {
-            uploadImage(files[0]);
-          },
-          onMediaDelete: function(target) {
-            deleteImage(target[0].src);
-          }
-        }
-      });
-      // untuk melakukan upload dan menampilkan kembali 
-      function uploadImage(file) {
-        var data = new FormData();
-        data.append("file", file);
-        $.ajax({
-          url: "<?php echo site_url('index.php/artikel/tambah') ?>",
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: data,
-          type: "POST",
-          success: function(url) {
-            console.log
-            $(this).summernote("insertImage", url);
-          },
-          error: function(data) {
-            console.log(data);
-          }
-        });
-      }
+    $(document).ready(function(){
+			$('#summernote').summernote({
+				height: "300px",
+				callbacks: {
+			        onImageUpload: function(image) {
+                // alert(image);
+			            tambah(image[0]);
+			        },
+			        onMediaDelete : function(target) {
+			            deleteImage(target[0].src);
+			        }
+				}
+			});
 
-      function deleteImage(src) {
-        $.ajax({
-          data: {
-            src: src
-          },
-          type: "POST",
-          url: "<?php echo site_url('post/delete_image') ?>",
-          cache: false,
-          success: function(response) {
-            console.log(response);
-          }
-        });
-      }
 
+  function tambah(image) {
+    alert(image);
+      data = new FormData();
+      // data = image;
+
+     data.append("image", image);
+    //  alert(data);
+       $.ajax({
+       url: "<?= site_url('index.php/artikel/tambah');?>",
+       data: data,
+       cache: false,
+       contentType: false,
+       processData: false,
+       type: 'POST',
+       success: function(data){
+      alert(data);
+        $('#summernote10').summernote("insertImage", data);
+    },
+       error: function(jqXHR, textStatus, errorThrown) {
+       console.log(textStatus+" "+errorThrown);
+      }
     });
+   }
+});
   </script>
 </body>
 

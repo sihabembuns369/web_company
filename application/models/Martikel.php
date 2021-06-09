@@ -18,5 +18,5 @@ class Martikel extends CI_Model {
             return 0;
         }
     }
-	
+    
 }

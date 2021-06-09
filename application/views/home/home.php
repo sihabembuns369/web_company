@@ -12,6 +12,14 @@
         <li><a class="nav-link scrollto" href="#about">About</a></li>
         <li><a class="nav-link  scrollto" href="#portfolio">Portfolio</a></li>
         <li><a class="nav-link  scrollto" href="#journal">Blog</a></li>
+        <li id="mode">
+          <label class="switch">
+            <input type="checkbox" id="checkbox_theme">
+            <span class="slider round"></span>
+            <i class="bi bi-sun-fill"></i>
+            <i class="bi bi-moon-fill"></i>
+          </label>
+        </li>
         <!-- <li class="dropdown"><a href<?= base_url(); ?>="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href<?= base_url(); ?>="#">Drop Down 1</a></li>
@@ -29,7 +37,32 @@
               <li><a href<?= base_url(); ?>="#">Drop Down 4</a></li>
             </ul>
           </li> -->
-        <li><a class="nav-link scrollto" href<?= base_url(); ?>="#contact">Contact</a></li>
+        <!-- <li><a class="nav-link scrollto" href<?= base_url(); ?>="#contact">Contact</a></li>
+        <li class="dropdown"><a href<?= base_url(); ?>="#"><i class="bi bi-palette "></i></i></a>  
+          <ul> 
+            
+            <li><a href<?= base_url(); ?>="#">
+              <input type="radio" name="light" id="light">
+              <label for="light">Light Mode</label>
+            </a></li>
+            <li><a href<?= base_url(); ?>="#">Drop Down 2</a></li>
+          </ul>
+        </li> -->
+        <!-- <li>
+          <div class="flex">
+            <input type="checkbox" class="checkbox_theme" id="checkbox_theme">
+            <label for="checkbox_theme" type="button" onclick="button();" class="label_theme">
+              <i class="bi bi-sun-fill"></i>
+              <i class="bi bi-moon-stars-fill"></i>
+              <div class="ball"></div>
+            </label>
+            <label for="checkbox_theme" type="button" onclick="button2();" class="label_theme2">
+              <i class="bi bi-sun-fill"></i>
+              <i class="bi bi-moon-stars-fill"></i>
+              <div class="ball"></div>
+            </label>
+          </div>
+        </li> -->
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
