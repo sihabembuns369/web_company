@@ -39,8 +39,7 @@
   <script src="<?=base_url();?>assets/vendor/typed.js/typed.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="<?=base_url();?>assets/js/main.js"></script>
-  <script src="<?=base_url();?>assets/js/toggle_theme.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 

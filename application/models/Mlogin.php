@@ -5,14 +5,6 @@ class Mlogin extends CI_Model {
 
     public function cek_login($user,$pass)
 	{
-//        $data = array(
-//            'username' => $user,
-//            'password' => $pass,
-
-//        );
-//        return $this->db->get_where('useer',$data);
-// echo $data;
-        //}
 
         $sql = "SELECT * FROM user WHERE username = '$user' AND password = '$pass' ";
         $querySQL = $this->db->query($sql);

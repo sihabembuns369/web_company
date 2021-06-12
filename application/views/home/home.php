@@ -345,16 +345,18 @@
     <div class="container">
       <div class="journal-block">
         <div class="row">
+        <?php foreach($artikel as $at){
 
-          <div class="col-lg-3 col-md-2">
+?>
+          <div class="col-lg-3 col-md-12 mt-5z">
             <div class="journal-info">
 
-              <a href="blog-single.html"><img src="<?= base_url(); ?>assets/img/blog-post-1.jpg" class="img-responsive" alt="img"></a>
+              <a href="blog-single.html"><img class="img-responsive" width="50%"  height="50%" src="<?=base_url();?>img/gambar/<?=$at->gambar;?>"></a>
 
               <div class="journal-txt">
 
-                <h4><a href="<?= base_url(); ?>blog-single.html">SO LETS MAKE THE MOST IS BEAUTIFUL</a></h4>
-                <p class="separator">To an English person, it will seem like simplified English
+                <h4><a href="<?= base_url(); ?>blog-single.html"><?= $at->judul;?></a></h4>
+                <p class="separator"><?= $at->isi;?>
                 </p>
 
               </div>
@@ -362,6 +364,9 @@
             </div>
           </div>
           
+
+<?php }?>
+
         </div>
       </div>
     </div>

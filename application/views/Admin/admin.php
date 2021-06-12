@@ -1,5 +1,5 @@
 <?php
-if ($this->session->userdata('username') === null) :
+if ($this->session->userdata('username') == null) :
   redirect(base_url());
 endif;
 ?>
@@ -196,11 +196,8 @@ endif;
             <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <?php foreach ($admin as $adm) {
-            ?>
+              <a href="<?= base_url(); ?>assets/#" class="d-block"><?php echo $this->session->userdata("username") ?></a>
 
-              <a href="<?= base_url(); ?>assets/#" class="d-block"><?= $adm->username; ?></a>
-            <?php } ?>
           </div>
         </div>
 
@@ -565,14 +562,14 @@ endif;
     $(document).ready(function(){
 			$('#summernote').summernote({
 				height: "300px",
-				callbacks: {
+				// callbacks: {
 			        onImageUpload: function(image) {
                 // alert(image);
 			            tambah(image[0]);
 			        },
 			        onMediaDelete : function(target) {
 			            deleteImage(target[0].src);
-			        }
+			        // }
 				}
 			});
 
